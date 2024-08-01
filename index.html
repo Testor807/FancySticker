@@ -7,34 +7,6 @@
         <img id="img" src="images/A1 (1).png" onclick="InfoPage()" style="border: 1px solid blue;position: relative;height: 91px;transform: rotate(-2deg);">
         <img id="main" src="images/1-02.png" style="margin-left: auto;margin-right: auto;display: block;"></img>
         <script>
-            let h = window.innerHeight*0.75;
-            document.getElementById("main").style.height = h+"px";
-            let rect = document.getElementById("main").getBoundingClientRect();
-            item = document.getElementById("img");
-            item.style.top = (rect.y+400)+"px";
-            item.style.left = window.innerWidth*0.5+"px";
-            //alert("img Height: "+item.style.height);
-            //alert("window Height:"+window.innerHeight);
-            setSize();
-            window.onresize() = function(){
-                let h = window.innerHeight*0.75;
-                document.getElementById("main").style.height = h+"px";
-                let rect = document.getElementById("main").getBoundingClientRect();
-                item = document.getElementById("img");
-                item.style.top = (rect.y+400)+"px";
-                item.style.left = window.innerHeight*0.5+"px";
-            }
-
-            function setSize(){
-                alert("Height:"+window.innerHeight);
-                if(window.innerHeight<768){
-                    alert("small");
-                    document.getElementById("img").style.height = "150px";
-                }else{
-                    alert("large");
-                    document.getElementById("img").style.height = "150px";
-                }
-            }
             function InfoPage(){
                 window.location.href = "info.html";
             }
