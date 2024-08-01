@@ -4,7 +4,7 @@
         <title></title>
     </head>
     <body>
-        <img id="img" src="images/A1 (1).png" style="position: absolute;height: 91px;transform: rotate(-2deg);">
+        <img id="img" src="images/A1 (1).png" onclick="InfoPage()" style="position: absolute;height: 91px;transform: rotate(-2deg);">
         <img id="main" src="images/1-02.png" style="margin-left: auto;margin-right: auto;display: block;"></img>
         <script>
             let h = window.innerHeight*0.75;
@@ -17,6 +17,9 @@
             window.onresize=function(){
                 item.style.left = (window.innerWidth*0.5-8)+"px";
             }
+
+            function InfoPage(){
+                windows.location.href = "info.html";
         </script>
     </body>
 </html>
