@@ -13,8 +13,8 @@
             item = document.getElementById("img");
             item.style.top = (rect.y+400)+"px";
             item.style.left = window.innerWidth*0.5+"px";
-            alert("img Height: "+item.style.height);
-            alert("window Height:"+window.innerHeight);
+            //alert("img Height: "+item.style.height);
+            //alert("window Height:"+window.innerHeight);
             setSize();
             window.onresize() = function(){
                 let h = window.innerHeight*0.75;
@@ -27,8 +27,10 @@
 
             function setSize(){
                 if(window.innerHeight<768){
+                    alert("small");
                     document.getElementById("img").style.height = "150px";
                 }else{
+                    alert("large");
                     document.getElementById("img").style.height = "91px";
                 }
             }
