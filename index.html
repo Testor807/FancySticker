@@ -7,15 +7,15 @@
         <img id="img" src="images/A1 (1).png" onclick="InfoPage()" style="border: 1px solid blue;position: relative;height: 91px;transform: rotate(-2deg);">
         <img id="main" src="images/1-02.png" style="margin-left: auto;margin-right: auto;display: block;"></img>
         <script>
-            let h = window.innerHeight*0.75;
+            let h = screen.height*0.75;
             document.getElementById("main").style.height = h+"px";
             let rect = document.getElementById("main").getBoundingClientRect();
             item = document.getElementById("img");
             item.style.top = (rect.y+400)+"px";
-            item.style.left = window.innerWidth*0.5+"px";
-
+            item.style.left = screen.width*0.5+"px";
+            
             window.onresize=function(){
-                item.style.left = (window.innerWidth*0.5-8)+"px";
+                item.style.left = (screen.width*0.5-8)+"px";
             }
 
             function InfoPage(){
