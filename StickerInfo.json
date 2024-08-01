@@ -1,0 +1,29 @@
+{"Sticker":[
+        {
+        "main_img":"M1",
+        "sub_img":"A1(1)",
+        "info":{
+            "painter":"painter1",
+            "Year of creation":2011,
+            "Descript": "New"
+        }
+        },
+        {
+            "main_img":"M2",
+            "sub_img":"A1(2)",
+            "info":{
+                "painter":"painter2",
+                "Year of creation":1730,
+                "Descript": "Old"
+            }
+        },
+        {
+            "main_img":"M3",
+            "sub_img":"A1(3)",
+            "info":{
+                "painter":"painter3",
+                "Year of creation":1730,
+                "Descript": "Current"
+            }
+        }
+]}
