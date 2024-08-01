@@ -13,18 +13,25 @@
             item = document.getElementById("img");
             item.style.top = (rect.y+400)+"px";
             item.style.left = window.innerWidth*0.5+"px";
-
             alert("img Height: "+item.style.height);
-            alert("window Height:"+window.innerHeigh)
-            window.resize() = function(){
+            alert("window Height:"+window.innerHeight);
+            setSize();
+            window.onresize() = function(){
                 let h = window.innerHeight*0.75;
                 document.getElementById("main").style.height = h+"px";
                 let rect = document.getElementById("main").getBoundingClientRect();
                 item = document.getElementById("img");
                 item.style.top = (rect.y+400)+"px";
-                item.style.left = window.innerHeightwidth*0.5+"px";
+                item.style.left = window.innerHeight*0.5+"px";
             }
 
+            function setSize(){
+                if(window.innerHeight<768){
+                    document.getElementById("img").style.height = "150px";
+                }else{
+                    document.getElementById("img").style.height = "91px";
+                }
+            }
             function InfoPage(){
                 window.location.href = "info.html";
             }
