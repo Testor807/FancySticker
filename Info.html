@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <style>
+            table, tr, td{
+                border: 1px solid black;
+            }
+        </style>
+        <h1 id="page">Sticker Info</h1>
+        <div id="dataDisplay">
+            <table>
+                <tr><td colspan="2"></td><td></td><td colspan="2"></td></tr>
+                <tr><td colspan="2"></td><td></td><td colspan="2"></td></tr>
+                <tr><td>Title:</td><td>:</td><td colspan="3"></td></tr>
+                <tr><td>Author</td><td>:</td><td colspan="3"></td></tr>
+                <tr><td>Era of Creation</td><td>:</td><td colspan="3"></td></tr>
+                <tr><td>Type of painter</td><td>:</td><td colspan="3"></td></tr>
+                <tr><td>Painter Content</td><td>:</td><td colspan="3"></td></tr>
+                <tr><td>Poem</td><td>:</td><td colspan="3"></td></tr>
+            </table>
+        </div>
+        <script>
+            //var value = localStorage.getItem("img");
+            //document.getElementById("page").innerHTML = value;
+            function fetchJSONData() {
+            fetch("StickerInfo.json")
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error
+                            (`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    //console.log(data.Sticker[1].info.Descript);})
+                    for(let i=0;i<data.length;i++){
+                        console.log(data[i]);
+                    }
+                })
+                .catch((error) => 
+                       console.error("Unable to fetch data:", error));
+            }
+
+             fetchJSONData();
+        </script>
+    </body>
+</html>
