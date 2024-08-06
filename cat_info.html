@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            body{
+                background-image: url("images/pexels-eberhardgross.png");
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                overflow: hidden;
+                transform: scale(1.02);
+            }
+            table, tr, td{
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <h1 id="page">猫 Info</h1>
+        <div id="dataDisplay">
+            <table>
+                <tr><td colspan="3" id="main_img"></td><td colspan="2" id="sub_img"></td></tr>
+                <tr><td colspan="3">Source Painter</td><td colspan="2">element</td></tr>
+                <tr><td>Title:</td><td>:</td><td colspan="3" id="title"></td></tr>
+                <tr><td>Author</td><td>:</td><td colspan="3" id="author"></td></tr>
+                <tr><td>Era of Creation</td><td>:</td><td colspan="3" id="era"></td></tr>
+                <tr><td>Type of painter</td><td>:</td><td colspan="3" id="type"></td></tr>
+                <tr><td>Painter Content</td><td>:</td><td colspan="3" id="content"></td></tr>
+                <tr><td>Poem</td><td>:</td><td colspan="3" id="poem"></td></tr>
+            </table>
+        </div>
+    </div>
+        <script>
+            var value = localStorage.getItem("img");
+            //document.getElementById("page").innerHTML = value;
+            function fetchJSONData() {
+            fetch("StickerInfo.json")
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error
+                            (`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    for(let i=0;i<data.length;i++){
+                        if(data[i].sub_image == value){
+                            document.getElementById("main_img").innerHTML = "<img src='"+data[i].source_image+"' style='height:91px'>";
+                            document.getElementById("sub_img").innerHTML = "<img src='"+data[i].sub_image+"' style='height:91px'>";
+                            document.getElementById("title").innerHTML = data[i].Info.Title;
+                            document.getElementById("author").innerHTML = data[i].Info.Author;
+                            document.getElementById("era").innerHTML = data[i].Info.Era;
+                            document.getElementById("type").innerHTML = data[i].Info.Type;
+                            document.getElementById("content").innerHTML = data[i].Info.Content;
+                            console.log(data[i]);
+                        }
+                    }
+                })
+                .catch((error) => 
+                       console.error("Unable to fetch data:", error));
+            }
+
+             fetchJSONData();
+        </script>
+    </body>
+</html>
