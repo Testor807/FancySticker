@@ -1,13 +1,21 @@
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>支持鼠标拖拽滑动的jQuery焦点图DEMO演示</title>
-<link href="css/sytyle.css" rel="stylesheet">
-<script src="js/jquery-1.js"></script>
-<script src="js/jquery_002.js"></script>
-<script src="js/jquery.js"></script>
-<script type="text/javascript">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0" />
+    <title>
+        How to create a custom scrollbar
+        using HTML and CSS?
+    </title>
+
+    <link href="css/sytyle.css" rel="stylesheet">
+    <script src="js/jquery-1.js"></script>
+    <script src="js/jquery_002.js"></script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
     $(document).ready(function () {
 
         $(".main_visual").hover(function () {
@@ -65,41 +73,31 @@
 
     });
 </script>
-</head>
-<body>
-<div>
-    <div id="list" style="position: absolute;top: 450px;z-index: 9999px;">
-        <table style="background-color: bisque;">
-            <tr><td><img src="images\Source\杞菊猫蝶图.png" style="height: 150px;"></img></td><td><img src="images\Source\花鸟图册_何翀.png" style="height: 100px;"></img></td><td><img src="images\Source\花鸟图册_何翀_2.png" style="height: 100px;"></img></td><td><img src="images\Source\月夜猿啼图_赵少昂.png" style="height: 100px;"></img></td><td><img src="images\Source\老鼠_.jpg" style="height: 100px;"></img></td><td><img src="images\Source\朱耷_黄头雀.png" style="height: 100px;"></img></td><td><img src="images\Source\黑兔_楊善深.jpg" style="height: 150px;"></img></td><td><img src="images\Source\花鸟草虫册_居廉.png" style="height: 100px;"></img></td></tr>
-        </table>
-</div>
-<div class="main_visual">
-  <div class="flicking_con">
-  <a class="on" href="#@">1</a>
-  <a href="#@">2</a>
-  </div>
-  <div class="main_image">
-    <ul>
-      <li> <img src="images/Source/杞菊猫蝶图.png" style="height: 100%;width: 80px;border: 1px solid black;"></li>
-      <li> <img src="images/A1 (1).png" style="border: 1px solid black;height: 85%;width: 50%;margin-left: 350px;"></li>
-    </ul>
-  </div>
-<script>
-$(".main_image img").each(function () {
-	var ww = $(".main_image").width();
-	var w = $(this).width();
-	var ml = Math.round((parseInt(ww) - parseInt(w)) / 2);
-	$(this).css({ marginLeft: ml + "px" })
-})
-</script> 
-</div>
-<div>
     <style>
+        .scroll-container {
+            height: 70%;
+            overflow-y: scroll;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .scroll-container::-webkit-scrollbar-button {
+            display: none;
+        }
+
+
+        html,body{
+            min-height: 100%;
+            min-width: 100%;
+        }
+
         body{
+                overflow: scroll; /* Show scrollbars */
+
                 background-image: url("images/pexels-eberhardgross.png");
                 /* Full height */
-                height: 100%;
-
                 /* Center and scale the image nicely */
                 background-position: center;
                 background-repeat: no-repeat;
@@ -107,43 +105,71 @@ $(".main_image img").each(function () {
                 overflow: hidden;
                 transform: scale(1.02);
             }
-        table,tr,td{
+
+        table, tr, td{
             border: 1px solid black;
         }
-        .header{
-            width: 60px;
-        }
-        .header,.symbol{
-            vertical-align: top;
-        }
-        .cotent{
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-
-        #list{
-            overflow-x: scroll;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .list::-webkit-scrollbar {
-            display: none;
-        }
     </style>
-    <table style="margin: 0 auto;">
-        <tr><td class="header">作品名</td><td class="symbol">:</td><td class="content" colspan="3" id="title">《花鸟图册》_21 Album of Birds and Flowers</td></tr>
-        <tr><td class="header">创作人</td><td class="symbol">:</td><td class="content" colspan="3" id="author">何翀 He Chong (Qing Dynasty)</td></tr>
-        <tr><td class="header">创作年份</td><td class="symbol">:</td><td class="content" colspan="3" id="era"></td></tr>
-        <tr><td class="header">创作人简介</td><td class="symbol">:</td><td class="content" colspan="3" id="type">何翀（1807—1883），字丹山。南海九江烟桥（今属广东佛山）人，居广州河南旧蒙圣里。作画法华嵒，笔致高秀、静逸怡人。
-            He Chong (1807—1883), style name Danshan, was born in Nanhai County but he lived in Guangzhou. He imitated the style of Hua Yan with an elegant and tranquil approach.</td></tr>
-        <tr><td class="header">款识</td><td class="symbol">:</td><td class="content" colspan="3" id="knowledge">丹山。</td></tr>
-        <tr><td class="header">印章</td><td class="symbol">:</td><td class="content" colspan="3" id="seal">
-            何翀之印（朱白文方印）
-        </td></tr>
-        <tr><td class="header">材质</td><td class="symbol">:</td><td class="content" colspan="3" id="material"></td></tr>
-        <tr><td class="header">尺寸</td><td class="symbol">:</td><td class="content" colspan="3" id="dimension"></td></tr>
-    </table>
-</div>
-</div>
+</head>
+
+<body>
+    <div class="scroll-container">
+        <div class="main_visual">
+            <div class="flicking_con">
+            <a class="on" href="#@">1</a>
+            <a href="#@">2</a>
+            </div>
+            <div class="main_image">
+              <ul>
+                <li> <img src="images/Source/花鸟图册_何翀.png" style="height: 60%;width: 300px;border: 1px solid black;padding-top: 30px;"></li>
+                <li> <img src="images/A1(19).png" style="border: 1px solid black;height: 85%;width: 50%;margin-left: 350px;"></li>
+              </ul>
+            </div>
+          <script>
+          $(".main_image img").each(function () {
+              var ww = $(".main_image").width();
+              var w = $(this).width();
+              var ml = Math.round((parseInt(ww) - parseInt(w)) / 2);
+              $(this).css({ marginLeft: ml + "px" })
+          })
+          </script> 
+          </div>
+        <div>
+            <table style="margin: 0 auto;overflow: auto;overflow: visible;">
+                <tr><td class="header">作品名</td><td class="symbol">:</td><td class="content" colspan="3" id="title">《花鸟图册》_21 Album of Birds and Flowers</td></tr>
+                <tr><td class="header">创作人</td><td class="symbol">:</td><td class="content" colspan="3" id="author">何翀 He Chong (Qing Dynasty)</td></tr>
+                <tr><td class="header">创作年份</td><td class="symbol">:</td><td class="content" colspan="3" id="era"></td></tr>
+                <tr><td class="header">创作人简介</td><td class="symbol">:</td><td class="content" colspan="3" id="type">何翀（1807—1883），字丹山。南海九江烟桥（今属广东佛山）人，居广州河南旧蒙圣里。作画法华嵒，笔致高秀、静逸怡人。
+                    <br />He Chong (1807—1883), style name Danshan, was born in Nanhai County but he lived in Guangzhou. He imitated the style of Hua Yan with an elegant and tranquil approach.</td></tr>
+                <tr><td class="header">款识</td><td class="symbol">:</td><td class="content" colspan="3" id="knowledge">丹山。</td></tr>
+                <tr><td class="header">印章</td><td class="symbol">:</td><td class="content" colspan="3" id="seal">
+                    何翀之印（朱白文方印）
+                </td></tr>
+                <tr><td class="header">材质</td><td class="symbol">:</td><td class="content" colspan="3" id="material"></td></tr>
+                <tr><td class="header">尺寸</td><td class="symbol">:</td><td class="content" colspan="3" id="dimension"></td></tr>
+            </table>
+        </div>
+    </div>
+    <div style="position: relative;">
+        <div id="list" style="position: inherit;z-index: 9999px; overflow-x:auto;"">
+            <div style="overflow-x:auto;">
+                <table>
+                  <tr>
+                    <th><img src="images\Source\杞菊猫蝶图_孙克弘(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟图册_何翀(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟图册_何翀_2(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\月夜猿啼图_赵少昂(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\老鼠_赵少昂(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\朱耷_黄头雀(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\黑兔_楊善深(1).png" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟草虫册_居廉(1).png" style="height: 70px;"></img></th>
+                  </tr>
+                </table>
+              </div>
+        </div>
+    </div>
+    <script>
+    </script>
 </body>
+
 </html>
