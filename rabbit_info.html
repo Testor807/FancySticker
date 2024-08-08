@@ -1,13 +1,103 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
 
-        <style>
-            body{
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0" />
+    <title>
+        How to create a custom scrollbar
+        using HTML and CSS?
+    </title>
+
+    <link href="css/sytyle.css" rel="stylesheet">
+    <script src="js/jquery-1.js"></script>
+    <script src="js/jquery_002.js"></script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".main_visual").hover(function () {
+            $("#btn_prev,#btn_next").fadeIn()
+        }, function () {
+            $("#btn_prev,#btn_next").fadeOut()
+        });
+
+        $dragBln = false;
+
+        $(".main_image").touchSlider({
+            flexible: true,
+            speed: 200,
+            btn_prev: $("#btn_prev"),
+            btn_next: $("#btn_next"),
+            paging: $(".flicking_con a"),
+            counter: function (e) {
+                $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+            }
+        });
+
+        $(".main_image").bind("mousedown", function () {
+            $dragBln = false;
+        });
+
+        $(".main_image").bind("dragstart", function () {
+            $dragBln = true;
+        });
+
+        $(".main_image a").click(function () {
+            if ($dragBln) {
+                return false;
+            }
+        });
+
+        timer = setInterval(function () {
+            $("#btn_next").click();
+        }, 5000);
+
+        $(".main_visual").hover(function () {
+            clearInterval(timer);
+        }, function () {
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+        });
+
+        $(".main_image").bind("touchstart", function () {
+            clearInterval(timer);
+        }).bind("touchend", function () {
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+        });
+
+    });
+</script>
+    <style>
+        .scroll-container {
+            height: 400px;
+            overflow-y: scroll;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .scroll-container::-webkit-scrollbar-button {
+            display: none;
+        }
+
+
+        html,body{
+            min-height: 100%;
+            min-width: 100%;
+        }
+
+        body{
+                overflow: scroll; /* Show scrollbars */
+
                 background-image: url("images/pexels-eberhardgross.png");
                 /* Full height */
-                height: 100%;
-
                 /* Center and scale the image nicely */
                 background-position: center;
                 background-repeat: no-repeat;
@@ -15,58 +105,90 @@
                 overflow: hidden;
                 transform: scale(1.02);
             }
-            table, tr, td{
-                border: 1px solid black;
-            }
-        </style>
-    </head>
-    <body>
-    <div>
-        <h1 id="page">兔 Info</h1>
-        <div id="dataDisplay">
-            <table>
-                <tr><td colspan="3" id="main_img"></td><td colspan="2" id="sub_img"></td></tr>
-                <tr><td colspan="3">Source Painter</td><td colspan="2">element</td></tr>
-                <tr><td>Title:</td><td>:</td><td colspan="3" id="title"></td></tr>
-                <tr><td>Author</td><td>:</td><td colspan="3" id="author"></td></tr>
-                <tr><td>Era of Creation</td><td>:</td><td colspan="3" id="era"></td></tr>
-                <tr><td>Type of painter</td><td>:</td><td colspan="3" id="type"></td></tr>
-                <tr><td>Painter Content</td><td>:</td><td colspan="3" id="content"></td></tr>
-                <tr><td>Poem</td><td>:</td><td colspan="3" id="poem"></td></tr>
+
+        table, tr, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-container">
+        <div class="main_visual">
+            <div class="flicking_con" style="top:180px;">
+            <a class="on" href="#@">1</a>
+            <a href="#@">2</a>
+            </div>
+            <div class="main_image">
+              <ul>
+                <li> <img src="images/Source/黑兔_楊善深.png" style="height: 80%;width: 40px;border: 1px solid black;"></li>
+                <li> <img src="images/rabbit.jpg" style="border: 1px solid black;height: 70%;width: 150px;margin-left: 350px;"></li>
+              </ul>
+            </div>
+          <script>
+          $(".main_image img").each(function () {
+              var ww = $(".main_image").width();
+              var w = $(this).width();
+              var ml = Math.round((parseInt(ww) - parseInt(w)) / 2);
+              $(this).css({ marginLeft: ml + "px" })
+          })
+          </script> 
+          </div>
+        <div>
+            <table style="margin: 0 auto;overflow: auto;overflow: visible;">
+                <tr><td class="header">作品名</td><td class="symbol">:</td><td class="content" colspan="3" id="title">黑兔</td></tr>
+                <tr><td class="header">创作人</td><td class="symbol">:</td><td class="content" colspan="3" id="author">楊善深</td></tr>
+                <tr><td class="header">创作年份</td><td class="symbol">:</td><td class="content" colspan="3" id="era"></td></tr>
+                <tr><td class="header">创作人简介</td><td class="symbol">:</td><td class="content" colspan="3" id="type"></td></tr>
+                <tr><td class="header">款识</td><td class="symbol">:</td><td class="content" colspan="3" id="knowledge">涉事。</td></tr>
+                <tr><td class="header">印章</td><td class="symbol">:</td><td class="content" colspan="3" id="seal">
+
+                </td></tr>
+                <tr><td class="header">材质</td><td class="symbol">:</td><td class="content" colspan="3" id="material"></td></tr>
+                <tr><td class="header">尺寸</td><td class="symbol">:</td><td class="content" colspan="3" id="dimension"></td></tr>
             </table>
         </div>
     </div>
-        <script>
-            var value = localStorage.getItem("img");
-            //document.getElementById("page").innerHTML = value;
-            function fetchJSONData() {
-            fetch("StickerInfo.json")
-                .then((res) => {
-                    if (!res.ok) {
-                        throw new Error
-                            (`HTTP error! Status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then((data) => {
-                    for(let i=0;i<data.length;i++){
-                        if(data[i].sub_image == value){
-                            document.getElementById("main_img").innerHTML = "<img src='"+data[i].source_image+"' style='height:91px'>";
-                            document.getElementById("sub_img").innerHTML = "<img src='"+data[i].sub_image+"' style='height:91px'>";
-                            document.getElementById("title").innerHTML = data[i].Info.Title;
-                            document.getElementById("author").innerHTML = data[i].Info.Author;
-                            document.getElementById("era").innerHTML = data[i].Info.Era;
-                            document.getElementById("type").innerHTML = data[i].Info.Type;
-                            document.getElementById("content").innerHTML = data[i].Info.Content;
-                            console.log(data[i]);
-                        }
-                    }
-                })
-                .catch((error) => 
-                       console.error("Unable to fetch data:", error));
+    <div style="position: relative;">
+        <div id="list" style="position: inherit;z-index: 9999px; overflow-x:auto;"">
+            <div style="overflow-x:auto;">
+                <table>
+                  <tr>
+                    <th><img src="images\Source\杞菊猫蝶图_孙克弘(1).png" onclick="jump(1)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟图册_何翀(1).png" onclick="jump(2)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟图册_何翀_2(1).png" onclick="jump(3)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\月夜猿啼图_赵少昂(1).png" onclick="jump(4)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\老鼠_赵少昂(1).png" onclick="jump(5)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\朱耷_黄头雀(1).png" onclick="jump(6)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\黑兔_楊善深(1).png" onclick="jump(7)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟草虫册_居廉(1).png" onclick="jump(8)" style="height: 70px;"></img></th>
+                  </tr>
+                </table>
+              </div>
+        </div>
+    </div>
+    <script>
+        function jump(value){
+            switch(value){
+                case 1:
+                    window.location.href = "cat_info.html"
+                case 2:
+                    window.location.href = "crab_info.html"
+                case 3:
+                    window.location.href = "Duck_info.html"
+                case 4:
+                    window.location.href = "monkey_info.html"
+                case 5:
+                    window.location.href = "mouse_info.html"
+                case 6:
+                    window.location.href = "partridge_Info.html"
+                case 7:
+                    window.location.href = "rabbit_info.html"
+                default:
+                    window.location.href = "sparrow_info.html"
             }
+        }
+    </script>
+</body>
 
-             fetchJSONData();
-        </script>
-    </body>
 </html>
