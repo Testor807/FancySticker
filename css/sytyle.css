@@ -9,7 +9,7 @@ a:hover { color: #D40000; text-decoration: none}
 
 /* main_image */
 .main_visual{ height:550px;overflow:hidden;position:relative;}
-.main_image{height:30%;overflow:hidden;position:relative;}
+.main_image{height:15%;overflow:hidden;position:relative;}
 .main_image ul{height:254px;overflow:hidden;position:absolute;top:0;left:0}
 .main_image li{float:left;height:254px;}
 .main_image li img{display:block;width:300px;}
