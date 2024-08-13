@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0" />
+    <title>
+        How to create a custom scrollbar
+        using HTML and CSS?
+    </title>
+
+    <link href="css/sytyle.css" rel="stylesheet">
+    <script src="js/jquery-1.js"></script>
+    <script src="js/jquery_002.js"></script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".main_visual").hover(function () {
+            $("#btn_prev,#btn_next").fadeIn()
+        }, function () {
+            $("#btn_prev,#btn_next").fadeOut()
+        });
+
+        $dragBln = false;
+
+        $(".main_image").touchSlider({
+            flexible: true,
+            speed: 200,
+            btn_prev: $("#btn_prev"),
+            btn_next: $("#btn_next"),
+            paging: $(".flicking_con a"),
+            counter: function (e) {
+                $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+            }
+        });
+
+        $(".main_image").bind("mousedown", function () {
+            $dragBln = false;
+        });
+
+        $(".main_image").bind("dragstart", function () {
+            $dragBln = true;
+        });
+
+        $(".main_image a").click(function () {
+            if ($dragBln) {
+                return false;
+            }
+        });
+
+        timer = setInterval(function () {
+            $("#btn_next").click();
+        }, 5000);
+
+        $(".main_visual").hover(function () {
+            clearInterval(timer);
+        }, function () {
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+        });
+
+        $(".main_image").bind("touchstart", function () {
+            clearInterval(timer);
+        }).bind("touchend", function () {
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+        });
+
+    });
+</script>
+    <style>
+        .scroll-container {
+            height: 400px;
+            overflow-y: scroll;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .scroll-container::-webkit-scrollbar-button {
+            display: none;
+        }
+
+
+        html,body{
+            min-height: 100%;
+            min-width: 100%;
+        }
+
+        body{
+                overflow: scroll; /* Show scrollbars */
+
+                background-image: url("images/pexels-eberhardgross.png");
+                /* Full height */
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                overflow: hidden;
+                transform: scale(1.02);
+            }
+
+        table, tr, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-container">
+        <div class="main_visual">
+            <div class="flicking_con" style="top:180px;">
+            <a class="on" href="#@">1</a>
+            <a href="#@">2</a>
+            </div>
+            <div class="main_image">
+              <ul>
+                <li> <img src="images/Source/朱耷_黄头雀.png" style="height: 70%;width: 170px;border: 1px solid black;"></li>
+                <li> <img src="images/bird2.jpg" style="border: 1px solid black;height: 85%;width: 50%;margin-left: 350px;"></li>
+              </ul>
+            </div>
+          <script>
+          $(".main_image img").each(function () {
+              var ww = $(".main_image").width();
+              var w = $(this).width();
+              var ml = Math.round((parseInt(ww) - parseInt(w)) / 2);
+              $(this).css({ marginLeft: ml + "px" })
+          })
+          </script> 
+          </div>
+        <div>
+            <table style="margin: 0 auto;overflow: auto;overflow: visible;">
+                <tr><td class="header">作品名</td><td class="symbol">:</td><td class="content" colspan="3" id="title">《花鸟图册》_2 Album of Birds and Flowers</td></tr>
+                <tr><td class="header">创作人</td><td class="symbol">:</td><td class="content" colspan="3" id="author">何翀 He Chong (Qing Dynasty)</td></tr>
+                <tr><td class="header">创作年份</td><td class="symbol">:</td><td class="content" colspan="3" id="era"></td></tr>
+                <tr><td class="header">创作人简介</td><td class="symbol">:</td><td class="content" colspan="3" id="type">朱耷（1626—1705），原名统𨨗，号雪个、个山等。江西南昌人。明宗室后裔，明亡后出家为僧，号八大山人。擅画花鸟、山水，以水墨写意为宗，造型傲兀奇特，构图险绝怪异，画面荒凉枯寂，笔墨简略凝重。清初“四画僧”之一。<br />
+                    Zhu Da (1626—1705), original name Tongquan, style names Xuege and Geshan etc., was born in Nanchang of Jiangxi province. As ancestral descendant of the Ming Dynasty, he became a monk after the fall of the Ming Dynasty with his pseudonym Bada Shanren. Apt at bird-and-flower as well as landscape, he based on the freehand style with a peculiar and striking modeling, unusual composition, isolate and lonely appearance and concise brushstrokes. He was regarded as one of the Four Monk Painters of early Qing Dynasty.</td></tr>
+                <tr><td class="header">款识</td><td class="symbol">:</td><td class="content" colspan="3" id="knowledge">涉事。</td></tr>
+                <tr><td class="header">印章</td><td class="symbol">:</td><td class="content" colspan="3" id="seal">
+                    可得神仙（白文方印）<br />
+                    香汀珍赏（朱文方印）<br />
+                    □□（朱文椭圆印）
+                </td></tr>
+                <tr><td class="header">材质</td><td class="symbol">:</td><td class="content" colspan="3" id="material"></td></tr>
+                <tr><td class="header">尺寸</td><td class="symbol">:</td><td class="content" colspan="3" id="dimension"></td></tr>
+            </table>
+        </div>
+    </div>
+    <div style="position: relative;">
+        <div id="list" style="position: inherit;z-index: 9999px; overflow-x:auto;"">
+            <div style="overflow-x:auto;">
+                <table>
+                  <tr>
+                    <th><img src="images\Source\杞菊猫蝶图_孙克弘(1).png" onclick="jump(1)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟图册_何翀(1).png" onclick="jump(2)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟图册_何翀_2(1).png" onclick="jump(3)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\月夜猿啼图_赵少昂(1).png" onclick="jump(4)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\老鼠_赵少昂(1).png" onclick="jump(5)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\朱耷_黄头雀(1).png" onclick="jump(6)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\黑兔_楊善深(1).png" onclick="jump(7)" style="height: 70px;"></img></th>
+                    <th><img src="images\Source\花鸟草虫册_居廉(1).png" onclick="jump(8)" style="height: 70px;"></img></th>
+                  </tr>
+                </table>
+              </div>
+        </div>
+    </div>
+    <script>
+        function jump(value){
+            switch(value){
+                case 1:
+                    window.location.href = "cat_info.html";
+                    break;
+                case 2:
+                    window.location.href = "crab_info.html";
+                    break;
+                case 3:
+                    window.location.href = "Duck_info.html";
+                    break;
+                case 4:
+                    window.location.href = "monkey_info.html";
+                    break;
+                case 5:
+                    window.location.href = "mouse_info.html";
+                    break;
+                case 6:
+                    window.location.href = "partridge_Info.html";
+                    break;
+                case 7:
+                    window.location.href = "rabbit_info.html";
+                    break;
+                default:
+                    window.location.href = "sparrow_info.html";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

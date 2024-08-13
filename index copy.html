@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1"></meta>
+    </head>
+    <body>
+        <div>
+        <img id="img2" src="images/A1 (3).png" onclick="InfoPage(this.id,'images/A1 (3).png')" style="border: 1px solid blue;position: absolute;height: 78px;left:501px;top:465px; display:normal;"></img>
+
+        <img id="main" src="images/1-02.png" style="margin-left: auto;margin-right: auto;display: block;width:100%;"></img>
+        </div>
+        <script>
+            //alert(window.innerHeight);
+            //alert(window.innerWidth);
+            function InfoPage(id,img){
+                localStorage.setItem("img",img);
+                console.log(localStorage.getItem("img"));
+                setTimeout(redirect, 1000);
+                //document.getElementById(id).style.backgroundColor = "yellow";
+            }
+            function redirect() {
+                window.location.href = "info.html";
+            }
+
+            AdjustSize();
+            window.onresize = function(){
+                AdjustSize();
+                //alert("running");
+            }
+            function AdjustSize(){
+                let w_h = 665;
+                let w_w = 640;
+                let n_w_h = window.innerWidth;
+                //alert(innerHeight);
+                var img2 = document.getElementById("img2");
+                img2.style.height = (78/640)*n_w_h+"px";
+                img2.style.left = (501/640)*n_w_h+"px";
+                img2.style.top = (465/640)*n_w_h+"px";
+            }
+        </script>
+    </body>
+</html>
